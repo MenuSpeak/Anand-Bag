@@ -822,6 +822,35 @@
             margin-top: 16px;
         }
 
+        /* Add Another Item Button */
+        .btn-add-another {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), rgba(255, 204, 102, 0.1));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 12px 14px;
+            border-radius: 12px;
+            color: var(--gold2);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-add-another:hover {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), rgba(255, 204, 102, 0.15));
+            border-color: var(--gold1);
+            transform: translateY(-2px);
+        }
+
+        .btn-add-another svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 3;
+        }
+
         .btn-whatsapp {
             background: #25D366;
             border: none;
@@ -1261,6 +1290,12 @@
             </div>
 
             <div class="cart-actions">
+                <button class="btn-add-another" id="addAnotherItem">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Add another Item
+                </button>
                 <button class="btn-clear" id="clearCart">Clear Cart</button>
                 <button class="btn-whatsapp" id="whatsappOrder">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
@@ -1399,6 +1434,7 @@
         const cartTotal = document.getElementById('cartTotal');
         const clearCart = document.getElementById('clearCart');
         const whatsappOrder = document.getElementById('whatsappOrder');
+        const addAnotherItem = document.getElementById('addAnotherItem');
         const customerDetailsSummary = document.getElementById('customerDetailsSummary');
 
         // Delivery option selection
@@ -1585,6 +1621,22 @@
             updateCart();
         });
 
+        // Add another item button functionality
+        addAnotherItem.addEventListener('click', () => {
+            cartModal.classList.remove('open');
+            
+            // Scroll to top of menu
+            window.scrollTo({
+                top: document.querySelector('.menu-head').offsetTop - 20,
+                behavior: 'smooth'
+            });
+            
+            // Focus on search to help user find items
+            setTimeout(() => {
+                document.getElementById('search').focus();
+            }, 500);
+        });
+
         // WhatsApp order function with customer details
         whatsappOrder.addEventListener('click', () => {
             if (cart.length === 0) {
@@ -1654,7 +1706,7 @@
 
             // Encode the message for WhatsApp URL
             const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/919767336353?text=${encodedMessage}`;
+            const whatsappURL = `https://wa.me/919156669444?text=${encodedMessage}`;
 
             // Open WhatsApp in a new tab
             window.open(whatsappURL, '_blank');
@@ -1754,4 +1806,3 @@
 </body>
 
 </html>
-
